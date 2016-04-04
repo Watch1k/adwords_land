@@ -1,0 +1,84 @@
+$icons: (0:0)
+$icons: map-merge($icons,(click: (X: 0px, Y:-24px, W: 19px, H: 19px, TW: 61px, TH: 43px, IMG: '../img/icons.png')))
+$icons: map-merge($icons,(conversion: (X: -48px, Y:0px, W: 13px, H: 16px, TW: 61px, TH: 43px, IMG: '../img/icons.png')))
+$icons: map-merge($icons,(cpa: (X: -23px, Y:-24px, W: 18px, H: 19px, TW: 61px, TH: 43px, IMG: '../img/icons.png')))
+$icons: map-merge($icons,(duration: (X: -25px, Y:0px, W: 19px, H: 20px, TW: 61px, TH: 43px, IMG: '../img/icons.png')))
+$icons: map-merge($icons,(installs: (X: 0px, Y:0px, W: 21px, H: 20px, TW: 61px, TH: 43px, IMG: '../img/icons.png')))
+$icons: map-merge($icons,(spent: (X: -48px, Y:-20px, W: 10px, H: 20px, TW: 61px, TH: 43px, IMG: '../img/icons.png')))
+
+
+// Gets an attribute from the sass map
+@function icon-attr($icon, $attr)
+	$icon: map-get($icons, $icon)
+	@return map-get($icon, $attr)
+
+@mixin sprite($iconName)
+	background-image: url(icon-attr($iconName, IMG))
+	width: icon-attr($iconName, W)
+	height: icon-attr($iconName, H)
+	background-position: icon-attr($iconName, X) icon-attr($iconName, Y)
+@mixin sprite-position($iconName)
+	background-position: icon-attr($iconName, X) icon-attr($iconName, Y)
+@mixin sprite-retina($iconName)
+	background-image: url(icon-attr($iconName, IMG))
+	$width: icon-attr($iconName, W)
+	$height: icon-attr($iconName, H)
+	width: $width/2
+	height: $height/2
+	$x: icon-attr($iconName, X)
+	$y: icon-attr($iconName, Y)
+	background-position: $x/2 $y/2
+	$tw: icon-attr($iconName, TW) 	
+	$th: icon-attr($iconName, TH)
+	background-size: $tw/2 $th/2
+@mixin sprite-position-retina($iconName)
+	$x: icon-attr($iconName, X)
+	$y: icon-attr($iconName, Y)
+	background-position: $x/2 $y/2
+
+
+@mixin s($i)
+	+sprite($i)
+@mixin sp($i)
+	+sprite-position($i)
+@mixin sr($i)
+	+sprite-retina($i)
+@mixin spr($i)
+	+sprite-position-retina($i)
+
+.icon-click
+	width: 19px
+	height: 19px
+	background-image: url('../img/icons.png')
+	background-position: 0px -24px
+	background-size: 61px 43px
+.icon-conversion
+	width: 13px
+	height: 16px
+	background-image: url('../img/icons.png')
+	background-position: -48px 0px
+	background-size: 61px 43px
+.icon-cpa
+	width: 18px
+	height: 19px
+	background-image: url('../img/icons.png')
+	background-position: -23px -24px
+	background-size: 61px 43px
+.icon-duration
+	width: 19px
+	height: 20px
+	background-image: url('../img/icons.png')
+	background-position: -25px 0px
+	background-size: 61px 43px
+.icon-installs
+	width: 21px
+	height: 20px
+	background-image: url('../img/icons.png')
+	background-position: 0px 0px
+	background-size: 61px 43px
+.icon-spent
+	width: 10px
+	height: 20px
+	background-image: url('../img/icons.png')
+	background-position: -48px -20px
+	background-size: 61px 43px
